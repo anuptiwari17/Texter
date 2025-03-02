@@ -1,10 +1,21 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from typing import Union
-from pydantic import BaseModel
-import requests
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+import os
 
-app = FastAPI(title="AI & Automation Tool API")
+app = FastAPI(title="Texter")
+
+# Get the absolute path of the frontend folder
+frontend_path = os.path.abspath("../frontend")  # Adjust this path if needed
+
+# Serve static files (CSS, JS, images, etc.)
+app.mount("/static", StaticFiles(directory=os.path.join(frontend_path, "assets")), name="static")
+
+# Serve index.html when visiting "/"
+@app.get("/")
+async def serve_frontend():
+    return FileResponse(os.path.join(frontend_path, "index.html"))
+
 
 # Enable CORS
 app.add_middleware(
