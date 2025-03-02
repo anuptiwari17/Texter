@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - AI & Automation Tool</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Firebase SDKs - Import as modules -->
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCw6NOeGTWr_xagr8JqwX3Qv_TnRRwANO8",
+            authDomain: "sample-project-c1e86.firebaseapp.com",
+            projectId: "sample-project-c1e86",
+            storageBucket: "sample-project-c1e86.firebasestorage.app",
+            messagingSenderId: "823647905098",
+            appId: "1:823647905098:web:00f730c2444529f58f0db3",
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        
+        // Check if user is already logged in
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // User is signed in, redirect to dashboard
+                window.location.href = "dashboard.html";
+            }
+        });
+
+        // Make login function available to the window
+        window.login = function() {
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+            
+            // Show loading state
+            const loginBtn = document.getElementById("login-button");
+            const originalText = loginBtn.textContent;
+            loginBtn.textContent = "Logging in...";
+            loginBtn.disabled = true;
+            
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Login successful
+                    console.log("Login successful!", userCredential.user.email);
+                    window.location.href = "dashboard.html";
+                })
+                .catch((error) => {
+                    // Handle errors
+                    console.error("Login error:", error);
+                    
+                    // Show error message
+                    const errorElement = document.getElementById("login-error");
+                    errorElement.textContent = error.message;
+                    errorElement.style.display = "block";
+                    
+                    // Reset button
+                    loginBtn.textContent = originalText;
+                    loginBtn.disabled = false;
+                });
+        };
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">AI & Automation</a>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#features">Features</a>
+                    <a href="login.html">Login</a>
+                    <a href="get-started.html" class="btn">Get Started</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login Form Section -->
+    <section>
+        <div class="container">
+            <div class="form-container">
+                <div class="form-title">
+                    <h2>Log In to Your Account</h2>
+                    <p>Welcome back to AI & Automation.</p>
+                </div>
+                <div id="login-error" style="display: none; background-color: #ffebee; color: #c62828; padding: 10px; border-radius: 4px; margin-bottom: 15px;"></div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email" class="form-label">Email</label>
+                        <input type="email" id="login-email" name="login-email" class="form-input" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password" class="form-label">Password</label>
+                        <input type="password" id="login-password" name="login-password" class="form-input" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group" style="text-align: right;">
+                        <a href="#" style="color: var(--primary-red);">Forgot password?</a>
+                    </div>
+                    <button type="button" id="login-button" class="btn" style="width: 100%;" onclick="login()">Log In</button>
+                </form>
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="register.html">Sign up</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>AI & Automation</h3>
+                    <p>Transforming the way you work with text using cutting-edge AI technology.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#features">Features</a></li>
+                        <li><a href="get-started.html">Get Started</a></li>
+                        <li><a href="login.html">Login</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Help & Support</h4>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">API</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AI & Automation Tool. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

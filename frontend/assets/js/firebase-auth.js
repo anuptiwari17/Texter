@@ -6,20 +6,26 @@ import {
     onAuthStateChanged 
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-// Register function
 window.register = function () {
+    console.log("Register function triggered");  // Debugging log
     const email = document.getElementById("register-email").value;
     const password = document.getElementById("register-password").value;
+    
+    console.log("Email:", email, "Password:", password);  // Debugging log
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+            console.log("Registration successful!", userCredential);  // Debugging log
             alert("Registration successful!");
             window.location.href = "dashboard.html";
         })
         .catch((error) => {
+            console.error("Registration error:", error);  // Debugging log
             alert(error.message);
         });
 };
+
+
 
 // Login function
 window.login = function () {

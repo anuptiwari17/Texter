@@ -1,0 +1,248 @@
+/* profile.css - Styles for user profile page */
+
+/* Import main styles */
+@import url('style.css');
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--primary-red);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-right: 2rem;
+}
+
+.profile-info h1 {
+    margin-bottom: 0.5rem;
+}
+
+.profile-email {
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+}
+
+.profile-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 2rem;
+}
+
+.profile-tab {
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+}
+
+.profile-tab:hover {
+    color: var(--text-primary);
+}
+
+.profile-tab.active {
+    color: var(--primary-red);
+    border-bottom-color: var(--primary-red);
+}
+
+.profile-content {
+    display: none;
+}
+
+.profile-content.active {
+    display: block;
+}
+
+.profile-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.profile-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.profile-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--secondary-black);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: var(--text-primary);
+}
+
+.profile-form-input:focus {
+    outline: 1px solid var(--primary-red);
+}
+
+.profile-save-btn {
+    margin-top: 1rem;
+}
+
+.usage-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.usage-card h3 {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.usage-progress {
+    height: 8px;
+    background-color: var(--secondary-black);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.usage-bar {
+    height: 100%;
+    background-color: var(--primary-red);
+    width: 60%;
+}
+
+.usage-details {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+.subscription-info {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.subscription-plan {
+    font-weight: 700;
+    color: var(--primary-red);
+    margin-bottom: 0.5rem;
+}
+
+.subscription-details {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+.api-keys-section {
+    margin-top: 2rem;
+}
+
+.api-key-item {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.api-key-info h4 {
+    margin-bottom: 0.5rem;
+}
+
+.api-key-value {
+    font-family: monospace;
+    background-color: var(--secondary-black);
+    padding: 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.api-key-created {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+.activity-history h3 {
+    margin-bottom: 1.5rem;
+}
+
+.activity-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.activity-table th {
+    text-align: left;
+    padding: 1rem;
+    background-color: var(--secondary-black);
+    color: var(--text-primary);
+}
+
+.activity-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.activity-table tr:last-child td {
+    border-bottom: none;
+}
+
+.activity-type {
+    font-weight: 500;
+}
+
+.activity-date {
+    color: var(--text-dim);
+}
+
+.activity-status.success {
+    color: #4caf50;
+}
+
+.activity-status.error {
+    color: var(--primary-red);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-avatar {
+        margin-right: 0;
+        margin-bottom: 1.5rem;
+    }
+    
+    .profile-tabs {
+        overflow-x: auto;
+    }
+    
+    .profile-tab {
+        white-space: nowrap;
+    }
+    
+    .activity-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
