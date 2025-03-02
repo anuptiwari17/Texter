@@ -11,35 +11,47 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
+    
+        // Firebase Configuration (Use the same as login.html)
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID",
+            apiKey: "AIzaSyCw6NOeGTWr_xagr8JqwX3Qv_TnRRwANO8",
+            authDomain: "sample-project-c1e86.firebaseapp.com",
+            projectId: "sample-project-c1e86",
+            storageBucket: "sample-project-c1e86.appspot.com",  // 🔥 Fixed typo here
+            messagingSenderId: "823647905098",
+            appId: "1:823647905098:web:00f730c2444529f58f0db3",
         };
-        
+    
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        
+    
+        // Wait until Firebase checks authentication state
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                // Store login state in session storage to prevent flickering
+                sessionStorage.setItem("loggedIn", "true");
+    
+                // Set user email in the dashboard
                 document.getElementById("user-email").textContent = user.email;
             } else {
+                // If no user, redirect after Firebase completes checking
+                sessionStorage.removeItem("loggedIn");
                 window.location.href = "login.html";
             }
         });
-        
-        window.logout = function() {
+    
+        // Logout function
+        window.logout = function () {
             signOut(auth).then(() => {
+                sessionStorage.removeItem("loggedIn");
                 window.location.href = "login.html";
             }).catch((error) => {
                 alert("Error signing out: " + error.message);
             });
         };
     </script>
+    
 </head>
 <body>
     <header class="header">
@@ -59,7 +71,7 @@
     <section class="dashboard-container">
         <div class="container">
             <h1>Welcome to Your Dashboard</h1>
-            <p>You're now logged in to your AI & Automation account.</p>
+            <p>You're now logged in to your Texter account.</p>
             
             <div class="dashboard-content" style="margin: 40px 0; padding: 20px; background-color: #525050; border-radius: 8px;">
                 <h2>Your Tools</h2>
