@@ -63,11 +63,6 @@ Here are some screenshots of the project:
 ![Screenshot 2](image2.png)
 ![Screenshot 3](image3.png)
 
-## Contributors
-- Kartik Sirohi
-- Manan Bansal
-- Atharv Dubey
-- Anup Tiwari
 
 ## Repository
 Find the source code on GitHub: [Texter GitHub Repository](https://github.com/anuptiwari17/flashhack)
