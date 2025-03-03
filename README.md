@@ -65,7 +65,7 @@ Here are some screenshots of the project:
 
 
 ## Repository
-Find the source code on GitHub: [Texter GitHub Repository](https://github.com/anuptiwari17/flashhack)
+Find the source code on GitHub: [Texter GitHub Repository](https://github.com/anuptiwari17/Texter)
 
 ## License
 This project is licensed under the MIT License.
