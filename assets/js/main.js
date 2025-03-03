@@ -1,5 +1,35 @@
 // main.js - Main JavaScript for the AI & Automation Tool
 
+
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const rootElement = document.documentElement;
+    
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        rootElement.classList.add('light-theme');
+    }
+    
+    // Toggle theme when button is clicked
+    themeToggle.addEventListener('click', function() {
+        if (rootElement.classList.contains('light-theme')) {
+            rootElement.classList.remove('light-theme');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            rootElement.classList.add('light-theme');
+            localStorage.setItem('theme', 'light');
+        }
+        
+        console.log('Theme toggled', rootElement.classList.contains('light-theme') ? 'light' : 'dark');
+    });
+});
+
+
+
+
+
 // API Base URL for backend calls
 const API_BASE_URL = "http://localhost:8000";
 
